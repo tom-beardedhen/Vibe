@@ -8,14 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: Constants.numberOfSamples)
+    
+    private func soundLevel(level: Float) -> CGFloat {
+        
+        let level = max(0.2, CGFloat(level) + 50) / 2
+        
+        return CGFloat(level * 12)
+    }
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        VStack{
+            
+            HStack (spacing: 0.5) {
+                ForEach(mic.soundSamples, id: \.self) { level in
+                    
+                    BarView(value: self.soundLevel(level: level))
+                    
+                }
+            }
+            
+        }
+        .padding(.horizontal)
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+

@@ -11,6 +11,10 @@
 		E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F5283D171E0048B3A3 /* ContentView.swift */; };
 		E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290F7283D17220048B3A3 /* Assets.xcassets */; };
 		E98290FB283D17220048B3A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290FA283D17220048B3A3 /* Preview Assets.xcassets */; };
+		E9829106283D1D0F0048B3A3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9829105283D1D0F0048B3A3 /* AudioKit */; };
+		E9829108283D21D50048B3A3 /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */; };
+		E982910A283D25650048B3A3 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9829109283D25650048B3A3 /* BarView.swift */; };
+		E982910D283D27F10048B3A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982910C283D27F10048B3A3 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,9 @@
 		E98290F5283D171E0048B3A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E98290F7283D17220048B3A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E98290FA283D17220048B3A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
+		E9829109283D25650048B3A3 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		E982910C283D27F10048B3A3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9829106283D1D0F0048B3A3 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +63,7 @@
 				E9829101283D17430048B3A3 /* Views */,
 				E9829103283D17520048B3A3 /* ViewModels */,
 				E9829102283D17490048B3A3 /* Models */,
+				E982910B283D27CA0048B3A3 /* Helpers */,
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
 				E98290F9283D17220048B3A3 /* Preview Content */,
 			);
@@ -73,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				E98290F5283D171E0048B3A3 /* ContentView.swift */,
+				E9829109283D25650048B3A3 /* BarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -87,8 +97,17 @@
 		E9829103283D17520048B3A3 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E982910B283D27CA0048B3A3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E982910C283D27F10048B3A3 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -107,6 +126,9 @@
 			dependencies = (
 			);
 			name = Vibe;
+			packageProductDependencies = (
+				E9829105283D1D0F0048B3A3 /* AudioKit */,
+			);
 			productName = Vibe;
 			productReference = E98290F0283D171E0048B3A3 /* Vibe.app */;
 			productType = "com.apple.product-type.application";
@@ -135,6 +157,9 @@
 				Base,
 			);
 			mainGroup = E98290E7283D171E0048B3A3;
+			packageReferences = (
+				E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */,
+			);
 			productRefGroup = E98290F1283D171E0048B3A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -161,8 +186,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E982910D283D27F10048B3A3 /* Constants.swift in Sources */,
+				E982910A283D25650048B3A3 /* BarView.swift in Sources */,
 				E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */,
 				E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */,
+				E9829108283D21D50048B3A3 /* MicrophoneMonitor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +322,7 @@
 				DEVELOPMENT_TEAM = WGMW46QRZ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -323,6 +352,7 @@
 				DEVELOPMENT_TEAM = WGMW46QRZ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -363,6 +393,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E9829105283D1D0F0048B3A3 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E98290E8283D171E0048B3A3 /* Project object */;
 }
