@@ -25,7 +25,7 @@ struct ContentView: View {
             HStack (spacing: 0.5) {
                 ForEach(mic.soundSamples, id: \.self) { level in
                     
-                    BarView(value: self.soundLevel(level: level))
+                    BarView(value: self.soundLevel(level: fabsf(level)))
                     
                 }
             }

@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import Accelerate
 
 class MicrophoneMonitor: ObservableObject {
     
@@ -55,11 +56,20 @@ class MicrophoneMonitor: ObservableObject {
     private func startMonitoring() {
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.record()
+        var sampleHolder = [Float](repeating: .zero, count: Constants.numberOfSamples)
         timer = Timer.scheduledTimer(withTimeInterval: Double(1/Constants.numberOfSamples), repeats: true, block: { timer in
             self.audioRecorder!.updateMeters()
-            self.soundSamples[self.currentSample] = self.audioRecorder!.averagePower(forChannel: 0)
+            sampleHolder[self.currentSample] = self.audioRecorder!.averagePower(forChannel: 0)
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
         })
+        
+        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, 1024, vDSP_DFT_Direction.FORWARD)
+        
+        let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: 1024)
+        floatPointer.initialize(from: &sampleHolder, count: 1024)
+        
+        self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+        
     }
     
     deinit {
