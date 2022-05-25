@@ -13,7 +13,7 @@ struct BarView: View {
     
     var body: some View {
         
-        Rectangle()
+        RoundedRectangle(cornerRadius: 5)
             .fill(.purple)
             .frame(width: (UIScreen.main.bounds.width - CGFloat(Constants.numberOfSamples)) / CGFloat(Constants.numberOfSamples), height: value)
     }

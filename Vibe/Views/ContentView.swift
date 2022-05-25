@@ -15,7 +15,7 @@ struct ContentView: View {
         
         let level = max(0.2, CGFloat(level) + 50) / 2
         
-        return CGFloat(level * 12)
+        return CGFloat(level * 12 * 2)
     }
     
     var body: some View {
