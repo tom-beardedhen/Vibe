@@ -9,7 +9,9 @@ import Foundation
 import AVFoundation
 import Accelerate
 
-class AudioEngine {
+class AudioEngine: ObservableObject {
+    
+    @Published var frequencyVertices: [Float] = [Float](repeating: 0, count: 361)
     
     var engine: AVAudioEngine!
     
@@ -78,7 +80,7 @@ class AudioEngine {
         
         //fft
         let fftMagnitudes =  SignalProcessing.fft(data: channelData, setup: fftSetup!)
-//        audioVisualizer.frequencyVertices = fftMagnitudes
+        self.frequencyVertices = fftMagnitudes
     }
     
 }
