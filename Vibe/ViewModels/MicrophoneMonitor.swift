@@ -56,19 +56,24 @@ class MicrophoneMonitor: ObservableObject {
     private func startMonitoring() {
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.record()
-        var sampleHolder = [Float](repeating: .zero, count: Constants.numberOfSamples)
-        timer = Timer.scheduledTimer(withTimeInterval: Double(1/Constants.numberOfSamples), repeats: true, block: { timer in
+//        var sampleHolder = [Float](repeating: .zero, count: Constants.numberOfSamples)
+        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { timer in
             self.audioRecorder!.updateMeters()
-            sampleHolder[self.currentSample] = self.audioRecorder!.averagePower(forChannel: 0)
-            self.currentSample = (self.currentSample + 1) % self.numberOfSamples
+            self.soundSamples[self.currentSample] = self.audioRecorder!.averagePower(forChannel: 0)
+            self.currentSample = (self.currentSample + 1)
+//            % self.numberOfSamples
+            if self.currentSample >= self.numberOfSamples {
+                self.timer?.invalidate()
+                self.audioRecorder!.stop()
+            }
         })
         
-        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, 1024, vDSP_DFT_Direction.FORWARD)
-        
-        let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: 1024)
-        floatPointer.initialize(from: &sampleHolder, count: 1024)
-        
-        self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+//        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, 1024, vDSP_DFT_Direction.FORWARD)
+//
+//        let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: 1024)
+//        floatPointer.initialize(from: &sampleHolder, count: 1024)
+//
+//        self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
         
     }
     

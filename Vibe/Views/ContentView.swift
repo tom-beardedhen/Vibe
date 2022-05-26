@@ -13,23 +13,39 @@ struct ContentView: View {
     
     private func soundLevel(level: Float) -> CGFloat {
         
-        let level = max(0.2, CGFloat(level) + 50) / 2
+        let level = max(0.4, CGFloat(level) + 50) / 2
         
         return CGFloat(level * 12 * 2)
     }
     
     var body: some View {
         
-        VStack{
+        VStack (alignment: .leading) {
             
-            HStack (spacing: 0.5) {
-                ForEach(mic.soundSamples, id: \.self) { level in
+//            HStack (spacing: 0.5) {
+//                ForEach(mic.soundSamples, id: \.self) { level in
+//
+//                    BarView(value: self.soundLevel(level: fabsf(level)))
+//
+//                }
+//            }
+            
+//            ScrollView(.horizontal) {
+                
+                HStack (alignment: .bottom, spacing: 1) {
                     
-                    BarView(value: self.soundLevel(level: fabsf(level)))
+                    ForEach(0..<128, id: \.self) { i in
+                        
+                        Rectangle()
+                            .foregroundColor(.blue)
+                            .frame(width: 2, height: self.soundLevel(level: mic.soundSamples[i % Constants.numberOfSamples]))
+                        
+                    }
                     
                 }
-            }
-            
+                
+//            }
+//            .frame(height: 200)
         }
         .padding(.horizontal)
     }
