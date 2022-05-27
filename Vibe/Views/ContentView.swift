@@ -16,6 +16,8 @@ struct ContentView: View {
     var body: some View {
         
         VStack (alignment: .leading) {
+            
+//            Text("\(mic.soundSamples.reduce(0,+)/1024)")
                 
             Spacer()
             
@@ -24,12 +26,12 @@ struct ContentView: View {
                 HStack (spacing: 2) {
                     Text("\(ranges[i]): ")
                         .font(Font.system(size: 18))
-                    Text(String(Int(mic.soundRanges[i])))
-                        .font(Font.system(size: 18))
-                        .padding(.trailing, 10)
+//                    Text(String(Int(mic.soundRanges[i])))
+//                        .font(Font.system(size: 18))
+//                        .padding(.trailing, 10)
                     
                     ForEach(0..<10) { j in
-                        BarView(value: CGFloat(mic.soundRangesWMem[i][j] / 10))
+                        BarView(value: CGFloat(mic.soundRangesWMem[i][j] * 2))
                     }
                 }
                 .padding(.horizontal)

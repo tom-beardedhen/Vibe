@@ -26,7 +26,7 @@ class MicrophoneMonitor: ObservableObject {
     init(numberOfSamples: Int) {
         
         self.numberOfSamples = numberOfSamples
-        self.soundSamples = [Float](repeating: .zero, count: Constants.numberOfSamples)
+        self.soundSamples = [Float](repeating: .zero, count: 1024)
         self.soundRanges = [Float](repeating: .zero, count: 5)
         self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 10)), count: 5)
         self.currentSample = 0
@@ -74,13 +74,14 @@ class MicrophoneMonitor: ObservableObject {
             floatPointer.initialize(from: &sampleHolder, count: 1024)
             self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
             self.orderSamples()
+            print(sampleHolder[100])
         })
         
-        fineTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
+        fineTimer = Timer.scheduledTimer(withTimeInterval: 1/1024, repeats: true, block: { timer in
             
             self.audioRecorder!.updateMeters()
             
-            sampleHolder[self.currentSample] = self.audioRecorder!.peakPower(forChannel: 0)
+            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.averagePower(forChannel: 0) + 50)) * 2
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
         })
 
@@ -113,6 +114,17 @@ class MicrophoneMonitor: ObservableObject {
         let thirdSplit = Array(self.soundSamples[8..<60])
         let fourthSplit = Array(self.soundSamples[60..<120])
         let finalSplit = Array(self.soundSamples[120..<512])
+        
+        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
+    }
+    
+    private func splitArraySmall() -> [[Float]] {
+        
+        let firstSplit = Array(self.soundSamples[0..<1])
+        let secondSplit = Array(self.soundSamples[1..<2])
+        let thirdSplit = Array(self.soundSamples[2..<16])
+        let fourthSplit = Array(self.soundSamples[16..<32])
+        let finalSplit = Array(self.soundSamples[33..<128])
         
         return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
     }

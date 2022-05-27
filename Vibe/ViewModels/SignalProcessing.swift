@@ -21,7 +21,6 @@ class SignalProcessing {
         for i in 0...1023 {
             realIn[i] = data[i]
         }
-    
         
         vDSP_DFT_Execute(setup, &realIn, &imagIn, &realOut, &imagOut)
 
@@ -38,7 +37,8 @@ class SignalProcessing {
         
         //normalize
         var normalizedMagnitudes = [Float](repeating: 0.0, count: 512)
-        var scalingFactor = Float(25.0/512)
+//        var scalingFactor = Float(25.0/512)
+        var scalingFactor = Float(1.0/512)
         vDSP_vsmul(&magnitudes, 1, &scalingFactor, &normalizedMagnitudes, 1, 512)
         
         return normalizedMagnitudes
