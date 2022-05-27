@@ -9,6 +9,6 @@ import Foundation
 
 struct Constants {
     
-    static let numberOfSamples = 256
+    static let numberOfSamples = 1024
     
 }
