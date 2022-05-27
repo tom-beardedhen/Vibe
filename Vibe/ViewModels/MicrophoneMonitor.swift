@@ -17,16 +17,20 @@ class MicrophoneMonitor: ObservableObject {
     
     private var currentSample: Int
     private var numberOfSamples: Int
+    private var sampleNumber: Int
     
     @Published var soundSamples: [Float]
     @Published var soundRanges: [Float]
+    @Published var soundRangesWMem: [[Float]]
     
     init(numberOfSamples: Int) {
         
         self.numberOfSamples = numberOfSamples
         self.soundSamples = [Float](repeating: .zero, count: Constants.numberOfSamples)
         self.soundRanges = [Float](repeating: .zero, count: 5)
+        self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 10)), count: 5)
         self.currentSample = 0
+        self.sampleNumber = 0
         
         let audioSession = AVAudioSession.sharedInstance()
         if audioSession.recordPermission != .granted {
@@ -80,7 +84,6 @@ class MicrophoneMonitor: ObservableObject {
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
         })
 
-        
     }
     
     private func orderSamples() {
@@ -92,6 +95,14 @@ class MicrophoneMonitor: ObservableObject {
         self.soundRanges[2] = splitArrays[2].reduce(0, +)
         self.soundRanges[3] = splitArrays[3].reduce(0, +)
         self.soundRanges[4] = splitArrays[4].reduce(0, +)
+        
+        self.soundRangesWMem[0][self.sampleNumber % 10] = self.soundRanges[0]
+        self.soundRangesWMem[1][self.sampleNumber % 10] = self.soundRanges[1]
+        self.soundRangesWMem[2][self.sampleNumber % 10] = self.soundRanges[2]
+        self.soundRangesWMem[3][self.sampleNumber % 10] = self.soundRanges[3]
+        self.soundRangesWMem[4][self.sampleNumber % 10] = self.soundRanges[4]
+        
+        self.sampleNumber += 1
         
     }
     

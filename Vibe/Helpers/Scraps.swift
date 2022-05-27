@@ -184,6 +184,8 @@ class Scraps {
 //    }
 //    .padding(.horizontal)
     
+    //                    BarView(value: CGFloat(mic.soundRanges[i] / 10))
+    
     private func soundLevel(level: Float) -> CGFloat {
         
         let level = max(0.2, CGFloat(level) + 50) / 2

@@ -15,18 +15,22 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack {
+        VStack (alignment: .leading) {
                 
             Spacer()
             
             ForEach(0..<5, id: \.self) { i in
                 
-                HStack {
+                HStack (spacing: 2) {
                     Text("\(ranges[i]): ")
-//                    Text(String(mic.soundRanges[i]))
+                        .font(Font.system(size: 18))
                     Text(String(Int(mic.soundRanges[i])))
+                        .font(Font.system(size: 18))
+                        .padding(.trailing, 10)
                     
-                    BarView(value: CGFloat(mic.soundRanges[i] / 10))
+                    ForEach(0..<10) { j in
+                        BarView(value: CGFloat(mic.soundRangesWMem[i][j] / 10))
+                    }
                 }
                 .padding(.horizontal)
                 
