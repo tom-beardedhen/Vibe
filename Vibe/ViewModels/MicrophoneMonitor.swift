@@ -26,7 +26,7 @@ class MicrophoneMonitor: ObservableObject {
     init(numberOfSamples: Int) {
         
         self.numberOfSamples = numberOfSamples
-        self.soundSamples = [Float](repeating: .zero, count: 1024)
+        self.soundSamples = [Float](repeating: .zero, count: Constants.samplesInUse/2)
         self.soundRanges = [Float](repeating: .zero, count: 5)
         self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 10)), count: 5)
         self.currentSample = 0
@@ -62,22 +62,22 @@ class MicrophoneMonitor: ObservableObject {
     
     private func startMonitoring() {
         
-        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, 1024, vDSP_DFT_Direction.FORWARD)
-        let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: 1024)
+        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, vDSP_Length(Constants.samplesInUse), vDSP_DFT_Direction.FORWARD)
+        let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: Constants.samplesInUse)
         
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.record()
         
-        var sampleHolder = [Float](repeating: .zero, count: Constants.numberOfSamples)
+        var sampleHolder = [Float](repeating: .zero, count: Constants.samplesInUse)
         
-        broadTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
-            floatPointer.initialize(from: &sampleHolder, count: 1024)
+        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+            floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
             self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
             self.orderSamples()
             print(sampleHolder[100])
         })
         
-        fineTimer = Timer.scheduledTimer(withTimeInterval: 1/1024, repeats: true, block: { timer in
+        fineTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(1/Constants.samplesInUse), repeats: true, block: { timer in
             
             self.audioRecorder!.updateMeters()
             
@@ -89,7 +89,7 @@ class MicrophoneMonitor: ObservableObject {
     
     private func orderSamples() {
         
-        let splitArrays = splitArray()
+        let splitArrays = splitArraySmall()
         
         self.soundRanges[0] = splitArrays[0].reduce(0, +)
         self.soundRanges[1] = splitArrays[1].reduce(0, +)

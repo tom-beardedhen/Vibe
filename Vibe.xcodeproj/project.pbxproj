@@ -17,6 +17,7 @@
 		E982910A283D25650048B3A3 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9829109283D25650048B3A3 /* BarView.swift */; };
 		E982910D283D27F10048B3A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982910C283D27F10048B3A3 /* Constants.swift */; };
 		E9C41B852840E51B00BB07CD /* Scraps.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41B842840E51B00BB07CD /* Scraps.swift */; };
+		E9C41B872841174C00BB07CD /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C41B862841174C00BB07CD /* RowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		E9829109283D25650048B3A3 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		E982910C283D27F10048B3A3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E9C41B842840E51B00BB07CD /* Scraps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scraps.swift; sourceTree = "<group>"; };
+		E9C41B862841174C00BB07CD /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 			children = (
 				E98290F5283D171E0048B3A3 /* ContentView.swift */,
 				E9829109283D25650048B3A3 /* BarView.swift */,
+				E9C41B862841174C00BB07CD /* RowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				E982910D283D27F10048B3A3 /* Constants.swift in Sources */,
 				E9752D64283E480A00D17570 /* SignalProcessing.swift in Sources */,
 				E982910A283D25650048B3A3 /* BarView.swift in Sources */,
+				E9C41B872841174C00BB07CD /* RowView.swift in Sources */,
 				E9C41B852840E51B00BB07CD /* Scraps.swift in Sources */,
 				E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */,
 				E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */,
