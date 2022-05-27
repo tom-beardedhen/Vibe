@@ -84,47 +84,47 @@ class Scraps {
     
     // MARK: rms
     
-    static func rms(data: UnsafeMutablePointer<Float>, frameLength: UInt) -> Float {
-        var val : Float = 0
-//        vDSP_measqv(data, 1, &val, frameLength)
-
-        var db = 10*log10f(val)
-        //inverse dB to +ve range where 0(silent) -> 160(loudest)
-        db = 160 + db;
-        //Only take into account range from 120->160, so FSR = 40
-        db = db - 120
-
-        let dividor = Float(40/0.3)
-        var adjustedVal = 0.3 + db/dividor
-
-        //cutoff
-        if (adjustedVal < 0.3) {
-            adjustedVal = 0.3
-        } else if (adjustedVal > 0.6) {
-            adjustedVal = 0.6
-        }
-        
-        return adjustedVal
-    }
+//    static func rms(data: UnsafeMutablePointer<Float>, frameLength: UInt) -> Float {
+//        var val : Float = 0
+////        vDSP_measqv(data, 1, &val, frameLength)
+//
+//        var db = 10*log10f(val)
+//        //inverse dB to +ve range where 0(silent) -> 160(loudest)
+//        db = 160 + db;
+//        //Only take into account range from 120->160, so FSR = 40
+//        db = db - 120
+//
+//        let dividor = Float(40/0.3)
+//        var adjustedVal = 0.3 + db/dividor
+//
+//        //cutoff
+//        if (adjustedVal < 0.3) {
+//            adjustedVal = 0.3
+//        } else if (adjustedVal > 0.6) {
+//            adjustedVal = 0.6
+//        }
+//
+//        return adjustedVal
+//    }
     
     //MARK: interpolate
     
-    static func interpolate(current: Float, previous: Float) -> [Float]{
-        var vals = [Float](repeating: 0, count: 11)
-        vals[10] = current
-        vals[5] = (current + previous)/2
-        vals[2] = (vals[5] + previous)/2
-        vals[1] = (vals[2] + previous)/2
-        vals[8] = (vals[5] + current)/2
-        vals[9] = (vals[10] + current)/2
-        vals[7] = (vals[5] + vals[9])/2
-        vals[6] = (vals[5] + vals[7])/2
-        vals[3] = (vals[1] + vals[5])/2
-        vals[4] = (vals[3] + vals[5])/2
-        vals[0] = (previous + vals[1])/2
-        
-        return vals
-    }
+//    static func interpolate(current: Float, previous: Float) -> [Float]{
+//        var vals = [Float](repeating: 0, count: 11)
+//        vals[10] = current
+//        vals[5] = (current + previous)/2
+//        vals[2] = (vals[5] + previous)/2
+//        vals[1] = (vals[2] + previous)/2
+//        vals[8] = (vals[5] + current)/2
+//        vals[9] = (vals[10] + current)/2
+//        vals[7] = (vals[5] + vals[9])/2
+//        vals[6] = (vals[5] + vals[7])/2
+//        vals[3] = (vals[1] + vals[5])/2
+//        vals[4] = (vals[3] + vals[5])/2
+//        vals[0] = (previous + vals[1])/2
+//
+//        return vals
+//    }
     
     // MARK: AudioVisualiser
     
@@ -186,12 +186,12 @@ class Scraps {
     
     //                    BarView(value: CGFloat(mic.soundRanges[i] / 10))
     
-    private func soundLevel(level: Float) -> CGFloat {
-        
-        let level = max(0.2, CGFloat(level) + 50) / 2
-        
-        return CGFloat(level * 12 * 2)
-    }
+//    private func soundLevel(level: Float) -> CGFloat {
+//        
+//        let level = max(0.2, CGFloat(level) + 50) / 2
+//        
+//        return CGFloat(level * 12 * 2)
+//    }
     
     // MARK: MicrophoneMonitor
     
@@ -223,4 +223,17 @@ class Scraps {
    //                self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
    //                self.orderSamples()
    //            }
+    
+    
+//    private func splitArray() -> [[Float]] {
+//
+//        let firstSplit = Array(self.soundSamples[0..<4])
+//        let secondSplit = Array(self.soundSamples[4..<8])
+//        let thirdSplit = Array(self.soundSamples[8..<60])
+//        let fourthSplit = Array(self.soundSamples[60..<120])
+//        let finalSplit = Array(self.soundSamples[120..<512])
+//
+//        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
+//    }
+    
 }

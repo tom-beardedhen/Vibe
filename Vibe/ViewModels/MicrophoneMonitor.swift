@@ -28,7 +28,7 @@ class MicrophoneMonitor: ObservableObject {
         self.numberOfSamples = numberOfSamples
         self.soundSamples = [Float](repeating: .zero, count: Constants.samplesInUse/2)
         self.soundRanges = [Float](repeating: .zero, count: 5)
-        self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 10)), count: 5)
+        self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 8)), count: 5)
         self.currentSample = 0
         self.sampleNumber = 0
         
@@ -70,26 +70,20 @@ class MicrophoneMonitor: ObservableObject {
         
         var sampleHolder = [Float](repeating: .zero, count: Constants.samplesInUse)
         
-        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.125, repeats: true, block: { timer in
+        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { timer in
             floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
             self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
             self.orderSamples()
 //            print(sampleHolder[100])
-            print(self.soundRanges)
+//            print(self.soundRanges)
         })
         
-        fineTimer = Timer.scheduledTimer(withTimeInterval: Double(1/Constants.samplesInUse*8), repeats: true, block: { timer in
+        fineTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
             
             self.audioRecorder!.updateMeters()
             
-            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.averagePower(forChannel: 0) + 80))
+            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.peakPower(forChannel: 0) + 80))
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
-            
-            if self.currentSample == self.numberOfSamples - 1 {
-                self.fineTimer?.invalidate()
-                self.broadTimer?.invalidate()
-                self.audioRecorder!.stop()
-            }
         })
 
     }
@@ -98,40 +92,21 @@ class MicrophoneMonitor: ObservableObject {
         
         let splitArrays = splitArraySmall()
         
-        self.soundRanges[0] = splitArrays[0].reduce(0, +)
-        self.soundRanges[1] = splitArrays[1].reduce(0, +)
-        self.soundRanges[2] = splitArrays[2].reduce(0, +)
-        self.soundRanges[3] = splitArrays[3].reduce(0, +)
-        self.soundRanges[4] = splitArrays[4].reduce(0, +)
-        
-        self.soundRangesWMem[0][self.sampleNumber % 10] = self.soundRanges[0]
-        self.soundRangesWMem[1][self.sampleNumber % 10] = self.soundRanges[1]
-        self.soundRangesWMem[2][self.sampleNumber % 10] = self.soundRanges[2]
-        self.soundRangesWMem[3][self.sampleNumber % 10] = self.soundRanges[3]
-        self.soundRangesWMem[4][self.sampleNumber % 10] = self.soundRanges[4]
+        for i in 0..<5 {
+            self.soundRanges[i] = splitArrays[i].reduce(0, +)
+            self.soundRangesWMem[i][self.sampleNumber % 8] = self.soundRanges[i]
+        }
         
         self.sampleNumber += 1
-        
-    }
-    
-    private func splitArray() -> [[Float]] {
-        
-        let firstSplit = Array(self.soundSamples[0..<4])
-        let secondSplit = Array(self.soundSamples[4..<8])
-        let thirdSplit = Array(self.soundSamples[8..<60])
-        let fourthSplit = Array(self.soundSamples[60..<120])
-        let finalSplit = Array(self.soundSamples[120..<512])
-        
-        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
     }
     
     private func splitArraySmall() -> [[Float]] {
         
-        let firstSplit = Array(self.soundSamples[0..<1])
-        let secondSplit = Array(self.soundSamples[1..<2])
-        let thirdSplit = Array(self.soundSamples[2..<16])
-        let fourthSplit = Array(self.soundSamples[16..<32])
-        let finalSplit = Array(self.soundSamples[33..<128])
+        let firstSplit = Array(self.soundSamples[0..<Constants.rangeNums[0]])
+        let secondSplit = Array(self.soundSamples[Constants.rangeNums[0]..<Constants.rangeNums[1]])
+        let thirdSplit = Array(self.soundSamples[Constants.rangeNums[1]..<Constants.rangeNums[2]])
+        let fourthSplit = Array(self.soundSamples[Constants.rangeNums[2]..<Constants.rangeNums[3]])
+        let finalSplit = Array(self.soundSamples[Constants.rangeNums[3]..<Constants.rangeNums[4]])
         
         return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
     }

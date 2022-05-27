@@ -9,25 +9,20 @@ import SwiftUI
 
 struct RowView: View {
     
-//    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: Constants.samplesInUse)
+    @StateObject private var mic = MicrophoneMonitor(numberOfSamples: Constants.samplesInUse)
     
-    let ranges = ["Bass", "Mid bass", "Mid-Range", "Treble", "Brilliance"]
     var index: Int
     
     var body: some View {
-//        HStack (spacing: 2) {
-//            Text("\(ranges[index]): ")
-//                .font(Font.system(size: 18))
-//            Text(String(Int(mic.soundRanges[index])))
-//                .font(Font.system(size: 18))
-//                .padding(.trailing, 10)
-//            
-//            BarView(value: CGFloat(mic.soundRanges[index] * 2))
-//            
-////            ForEach(0..<10) { j in
-////                BarView(value: CGFloat(mic.soundRangesWMem[index][j] * 2))
-////            }
-//        }
-        Text("hello")
+        HStack (spacing: 2) {
+            Text("\(Constants.rangeNames[index]): ")
+                .font(Font.system(size: 18))
+            
+            Spacer()
+            
+            ForEach(0..<8) { j in
+                BarView(value: CGFloat(mic.soundRangesWMem[index][j]))
+            }
+        }
     }
 }
