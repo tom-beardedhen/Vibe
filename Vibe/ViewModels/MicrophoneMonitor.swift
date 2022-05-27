@@ -70,19 +70,26 @@ class MicrophoneMonitor: ObservableObject {
         
         var sampleHolder = [Float](repeating: .zero, count: Constants.samplesInUse)
         
-        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { timer in
+        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.125, repeats: true, block: { timer in
             floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
             self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
             self.orderSamples()
-            print(sampleHolder[100])
+//            print(sampleHolder[100])
+            print(self.soundRanges)
         })
         
-        fineTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(1/Constants.samplesInUse), repeats: true, block: { timer in
+        fineTimer = Timer.scheduledTimer(withTimeInterval: Double(1/Constants.samplesInUse*8), repeats: true, block: { timer in
             
             self.audioRecorder!.updateMeters()
             
-            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.averagePower(forChannel: 0) + 50)) * 2
+            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.averagePower(forChannel: 0) + 80))
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
+            
+            if self.currentSample == self.numberOfSamples - 1 {
+                self.fineTimer?.invalidate()
+                self.broadTimer?.invalidate()
+                self.audioRecorder!.stop()
+            }
         })
 
     }
