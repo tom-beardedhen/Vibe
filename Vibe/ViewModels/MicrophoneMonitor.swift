@@ -12,24 +12,21 @@ import Accelerate
 class MicrophoneMonitor: ObservableObject {
     
     private var audioRecorder: AVAudioRecorder?
-    private var timer: Timer?
+    private var fineTimer: Timer?
+    private var broadTimer: Timer?
     
     private var currentSample: Int
     private var numberOfSamples: Int
-    private var timeNum: Float
     
     @Published var soundSamples: [Float]
-    @Published var amplitudeTime: [[Float]]
     @Published var soundRanges: [Float]
     
     init(numberOfSamples: Int) {
         
         self.numberOfSamples = numberOfSamples
         self.soundSamples = [Float](repeating: .zero, count: Constants.numberOfSamples)
-        self.amplitudeTime = [[Float]](repeating: [.zero, .zero], count: Constants.numberOfSamples)
         self.soundRanges = [Float](repeating: .zero, count: 5)
         self.currentSample = 0
-        self.timeNum = 0
         
         let audioSession = AVAudioSession.sharedInstance()
         if audioSession.recordPermission != .granted {
@@ -60,26 +57,27 @@ class MicrophoneMonitor: ObservableObject {
     }
     
     private func startMonitoring() {
+        
         let fftSetup = vDSP_DFT_zop_CreateSetup(nil, 1024, vDSP_DFT_Direction.FORWARD)
         let floatPointer = UnsafeMutablePointer<Float>.allocate(capacity: 1024)
+        
         audioRecorder!.isMeteringEnabled = true
         audioRecorder!.record()
+        
         var sampleHolder = [Float](repeating: .zero, count: Constants.numberOfSamples)
-        timer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
-            self.audioRecorder!.updateMeters()
-            sampleHolder[self.currentSample] = self.audioRecorder!.peakPower(forChannel: 0)
-
+        
+        broadTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
+            floatPointer.initialize(from: &sampleHolder, count: 1024)
+            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+            self.orderSamples()
+        })
+        
+        fineTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
             
-            self.amplitudeTime[self.currentSample][0] = self.timeNum
-            self.amplitudeTime[self.currentSample][1] = self.audioRecorder!.peakPower(forChannel: 0)
+            self.audioRecorder!.updateMeters()
+            
+            sampleHolder[self.currentSample] = self.audioRecorder!.peakPower(forChannel: 0)
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
-            self.timeNum += 0.01
-
-            if self.currentSample == (self.numberOfSamples - 1) {
-                floatPointer.initialize(from: &sampleHolder, count: 1024)
-                self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
-                self.orderSamples()
-            }
         })
 
         
@@ -109,7 +107,8 @@ class MicrophoneMonitor: ObservableObject {
     }
     
     deinit {
-        timer?.invalidate()
+        fineTimer?.invalidate()
+        broadTimer?.invalidate()
         audioRecorder!.stop()
     }
     

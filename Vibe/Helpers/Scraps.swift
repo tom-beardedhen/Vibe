@@ -206,4 +206,19 @@ class Scraps {
     //
     //            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
     //        }
+    
+    
+    //    @Published var amplitudeTime: [[Float]]
+    //        self.amplitudeTime = [[Float]](repeating: [.zero, .zero], count: Constants.numberOfSamples)
+    //    private var timeNum: Float
+    //    self.timeNum = 0
+    //            self.amplitudeTime[self.currentSample][0] = self.timeNum
+    //            self.amplitudeTime[self.currentSample][1] = self.audioRecorder!.peakPower(forChannel: 0)
+    //            self.timeNum += 0.01
+    
+   //            if self.currentSample == (self.numberOfSamples - 1) {
+   //                floatPointer.initialize(from: &sampleHolder, count: 1024)
+   //                self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+   //                self.orderSamples()
+   //            }
 }
