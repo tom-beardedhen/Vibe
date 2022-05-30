@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RowView: View {
     
-    @StateObject private var mic = MicrophoneMonitor(numberOfSamples: Constants.samplesInUse)
+    @StateObject private var mic = MicrophoneMonitor()
     
     var index: Int
     

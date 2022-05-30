@@ -236,4 +236,32 @@ class Scraps {
 //        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
 //    }
     
+    // MARK: Ordering functions
+    
+    //    func orderSamples(array: [Float], int: Int) -> [[Float]] {
+    //
+    //        let splitArrays = splitArraySmall(array: array)
+    //        var soundRanges = [Float](repeating: .zero, count: 5)
+    //        var soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 8)), count: 5)
+    //
+    //        for i in 0..<5 {
+    //            soundRanges[i] = splitArrays[i].reduce(0, +)
+    //            soundRangesWMem[i][int % 8] = soundRanges[i]
+    //        }
+    //
+    //        return soundRangesWMem
+    //    }
+    //
+    //    func splitArraySmall(array: [Float]) -> [[Float]] {
+    //
+    //        let firstSplit = Array(array[0..<Constants.rangeNums[0]])
+    //        let secondSplit = Array(array[Constants.rangeNums[0]..<Constants.rangeNums[1]])
+    //        let thirdSplit = Array(array[Constants.rangeNums[1]..<Constants.rangeNums[2]])
+    //        let fourthSplit = Array(array[Constants.rangeNums[2]..<Constants.rangeNums[3]])
+    //        let finalSplit = Array(array[Constants.rangeNums[3]..<Constants.rangeNums[4]])
+    //
+    //        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
+    //    }
+
+    
 }

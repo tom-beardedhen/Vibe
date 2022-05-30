@@ -44,5 +44,4 @@ class SignalProcessing {
         return normalizedMagnitudes
     }
     
-    
 }

@@ -67,8 +67,7 @@
 			children = (
 				E98290F3283D171E0048B3A3 /* VibeApp.swift */,
 				E9829101283D17430048B3A3 /* Views */,
-				E9829103283D17520048B3A3 /* ViewModels */,
-				E9829102283D17490048B3A3 /* Models */,
+				E9829103283D17520048B3A3 /* AudioProcessing */,
 				E982910B283D27CA0048B3A3 /* Helpers */,
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
 				E98290F9283D17220048B3A3 /* Preview Content */,
@@ -94,20 +93,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		E9829102283D17490048B3A3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E9829103283D17520048B3A3 /* ViewModels */ = {
+		E9829103283D17520048B3A3 /* AudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
 				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
 				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
 			);
-			path = ViewModels;
+			path = AudioProcessing;
 			sourceTree = "<group>";
 		};
 		E982910B283D27CA0048B3A3 /* Helpers */ = {

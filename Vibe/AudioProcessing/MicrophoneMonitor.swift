@@ -19,13 +19,13 @@ class MicrophoneMonitor: ObservableObject {
     private var numberOfSamples: Int
     private var sampleNumber: Int
     
-    @Published var soundSamples: [Float]
-    @Published var soundRanges: [Float]
+    var soundSamples: [Float]
+    var soundRanges: [Float]
     @Published var soundRangesWMem: [[Float]]
     
-    init(numberOfSamples: Int) {
+    init() {
         
-        self.numberOfSamples = numberOfSamples
+        self.numberOfSamples = Constants.samplesInUse
         self.soundSamples = [Float](repeating: .zero, count: Constants.samplesInUse/2)
         self.soundRanges = [Float](repeating: .zero, count: 5)
         self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 8)), count: 5)
@@ -70,20 +70,26 @@ class MicrophoneMonitor: ObservableObject {
         
         var sampleHolder = [Float](repeating: .zero, count: Constants.samplesInUse)
         
-        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { timer in
-            floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
-            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
-            self.orderSamples()
-//            print(sampleHolder[100])
-//            print(self.soundRanges)
-        })
+//        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { timer in
+//            floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
+//            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+//            self.orderSamples()
+//        })
         
-        fineTimer = Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
+        fineTimer = Timer.scheduledTimer(withTimeInterval: 0.0005, repeats: true, block: { timer in
             
             self.audioRecorder!.updateMeters()
             
-            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.peakPower(forChannel: 0) + 80))
+            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.peakPower(forChannel: 0) + 100))
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
+            
+            if self.currentSample == self.numberOfSamples - 1 {
+                floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
+                self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+                DispatchQueue.main.async {
+                    self.orderSamples()
+                }
+            }
         })
 
     }
