@@ -15,10 +15,10 @@ struct RowView: View {
     
     var body: some View {
         HStack (spacing: 2) {
-            Text("\(Constants.rangeNames[index]): ")
-                .font(Font.system(size: 18))
-            
-            Spacer()
+//            Text("\(Constants.rangeNames[index]): ")
+//                .font(Font.system(size: 18))
+//            
+//            Spacer()
             
             ForEach(0..<8) { j in
                 BarView(value: CGFloat(mic.soundRangesWMem[index][j]))

@@ -11,7 +11,7 @@ struct ContentView: View {
     
     var body: some View {
         
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 30) {
             
             ForEach(0..<5, id: \.self) { i in
                 RowView(index: i)

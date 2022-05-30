@@ -80,7 +80,7 @@ class MicrophoneMonitor: ObservableObject {
             
             self.audioRecorder!.updateMeters()
             
-            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.peakPower(forChannel: 0) + 100))
+            sampleHolder[self.currentSample] = max(0.1, (self.audioRecorder!.averagePower(forChannel: 0) + 50))
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
             
             if self.currentSample == self.numberOfSamples - 1 {
@@ -102,6 +102,8 @@ class MicrophoneMonitor: ObservableObject {
             self.soundRanges[i] = splitArrays[i].reduce(0, +)
             self.soundRangesWMem[i][self.sampleNumber % 8] = self.soundRanges[i]
         }
+        
+//        print(soundRanges)
         
         self.sampleNumber += 1
     }
