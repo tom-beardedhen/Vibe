@@ -236,6 +236,13 @@ class Scraps {
 //        return [firstSplit, secondSplit, thirdSplit, fourthSplit, finalSplit]
 //    }
     
+    
+//        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { timer in
+//            floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
+//            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
+//            self.orderSamples()
+//        })
+    
     // MARK: Ordering functions
     
     //    func orderSamples(array: [Float], int: Int) -> [[Float]] {

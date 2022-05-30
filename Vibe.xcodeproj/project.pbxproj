@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E9752D64283E480A00D17570 /* SignalProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9752D63283E480A00D17570 /* SignalProcessing.swift */; };
+		E9787963284521D20021B5A2 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9787962284521D20021B5A2 /* AudioManager.swift */; };
+		E9787965284524DD0021B5A2 /* music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9787964284524DD0021B5A2 /* music.mp3 */; };
+		E9787967284525B10021B5A2 /* night_thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9787966284525B10021B5A2 /* night_thunder.mp3 */; };
 		E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F3283D171E0048B3A3 /* VibeApp.swift */; };
 		E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F5283D171E0048B3A3 /* ContentView.swift */; };
 		E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290F7283D17220048B3A3 /* Assets.xcassets */; };
@@ -22,6 +25,10 @@
 
 /* Begin PBXFileReference section */
 		E9752D63283E480A00D17570 /* SignalProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalProcessing.swift; sourceTree = "<group>"; };
+		E9787962284521D20021B5A2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		E9787964284524DD0021B5A2 /* music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = music.mp3; sourceTree = "<group>"; };
+		E9787966284525B10021B5A2 /* night_thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = night_thunder.mp3; sourceTree = "<group>"; };
+		E97879682845269D0021B5A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E98290F0283D171E0048B3A3 /* Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vibe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98290F3283D171E0048B3A3 /* VibeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeApp.swift; sourceTree = "<group>"; };
 		E98290F5283D171E0048B3A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,11 +72,14 @@
 		E98290F2283D171E0048B3A3 /* Vibe */ = {
 			isa = PBXGroup;
 			children = (
+				E97879682845269D0021B5A2 /* Info.plist */,
 				E98290F3283D171E0048B3A3 /* VibeApp.swift */,
 				E9829101283D17430048B3A3 /* Views */,
 				E9829103283D17520048B3A3 /* AudioProcessing */,
 				E982910B283D27CA0048B3A3 /* Helpers */,
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
+				E9787966284525B10021B5A2 /* night_thunder.mp3 */,
+				E9787964284524DD0021B5A2 /* music.mp3 */,
 				E98290F9283D17220048B3A3 /* Preview Content */,
 			);
 			path = Vibe;
@@ -97,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
+				E9787962284521D20021B5A2 /* AudioManager.swift */,
 				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
 			);
 			path = AudioProcessing;
@@ -177,6 +188,8 @@
 			files = (
 				E98290FB283D17220048B3A3 /* Preview Assets.xcassets in Resources */,
 				E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */,
+				E9787967284525B10021B5A2 /* night_thunder.mp3 in Resources */,
+				E9787965284524DD0021B5A2 /* music.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +206,7 @@
 				E9C41B872841174C00BB07CD /* RowView.swift in Sources */,
 				E9C41B852840E51B00BB07CD /* Scraps.swift in Sources */,
 				E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */,
+				E9787963284521D20021B5A2 /* AudioManager.swift in Sources */,
 				E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */,
 				E9829108283D21D50048B3A3 /* MicrophoneMonitor.swift in Sources */,
 			);
@@ -326,6 +340,7 @@
 				DEVELOPMENT_TEAM = WGMW46QRZ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Vibe/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -356,6 +371,7 @@
 				DEVELOPMENT_TEAM = WGMW46QRZ4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Vibe/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "The app needs to access your microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

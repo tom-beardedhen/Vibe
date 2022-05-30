@@ -21,14 +21,16 @@ class MicrophoneMonitor: ObservableObject {
     
     var soundSamples: [Float]
     var soundRanges: [Float]
+    
     @Published var soundRangesWMem: [[Float]]
+    @Published var type: Hype = .ambient
     
     init() {
         
         self.numberOfSamples = Constants.samplesInUse
         self.soundSamples = [Float](repeating: .zero, count: Constants.samplesInUse/2)
         self.soundRanges = [Float](repeating: .zero, count: 5)
-        self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: 8)), count: 5)
+        self.soundRangesWMem = [[Float]](repeating: ([Float](repeating: .zero, count: Constants.memoryNum)), count: 5)
         self.currentSample = 0
         self.sampleNumber = 0
         
@@ -78,12 +80,6 @@ class MicrophoneMonitor: ObservableObject {
         // Create a holder for new samples
         var sampleHolder = [Float](repeating: .zero, count: Constants.samplesInUse)
         
-//        broadTimer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true, block: { timer in
-//            floatPointer.initialize(from: &sampleHolder, count: Constants.samplesInUse)
-//            self.soundSamples = SignalProcessing.fft(data: floatPointer, setup: fftSetup!)
-//            self.orderSamples()
-//        })
-        
         // Create timer
         fineTimer = Timer.scheduledTimer(withTimeInterval: 0.0005, repeats: true, block: { timer in
             
@@ -114,7 +110,7 @@ class MicrophoneMonitor: ObservableObject {
         
         for i in 0..<5 {
             self.soundRanges[i] = splitArrays[i].reduce(0, +)
-            self.soundRangesWMem[i][self.sampleNumber % 8] = self.soundRanges[i]
+            self.soundRangesWMem[i][self.sampleNumber % Constants.memoryNum] = self.soundRanges[i]
         }
         
 //        print(soundRanges)
