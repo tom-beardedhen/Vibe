@@ -38,7 +38,7 @@ class SignalProcessing {
         
         // Normalize using a scaling factor
         var normalizedMagnitudes = [Float](repeating: 0.0, count: 128)
-        var scalingFactor = Float(1.0/128)
+        var scalingFactor = Float(5.0/128)
         vDSP_vsmul(&magnitudes, 1, &scalingFactor, &normalizedMagnitudes, 1, 128)
         
         return normalizedMagnitudes
