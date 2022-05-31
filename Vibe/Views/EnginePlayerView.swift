@@ -15,20 +15,12 @@ struct EnginePlayerView: View {
     
     @State private var isEditing: Bool = false
     
-    let timer = Timer
-        .publish(every: 0.5, on: .main, in: .common)
-        .autoconnect()
-    
     var body: some View {
         
         VStack {
             
-            Button {
-//                am.startPlayer(track: "night_thunder")
-                playing = true
-            } label: {
-                Text("night_thunder")
-            }
+            BarView(value: CGFloat(am.meterLevel))
+                .padding(50)
             
             Spacer()
             
@@ -76,12 +68,6 @@ struct EnginePlayerView: View {
 
         }
         .padding()
-        .onReceive(timer) { _ in
-            guard !isEditing else {
-                return
-            }
-//            value = player 
-        }
     }
 }
 
