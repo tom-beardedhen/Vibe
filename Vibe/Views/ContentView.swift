@@ -24,31 +24,6 @@ struct ContentView: View {
                 .padding(.horizontal)
                     
             }
-            
-//            VStack{
-//                HStack {
-//                    Button {
-//                        mic.type = .stored
-//                    } label: {
-//                        ZStack {
-//                            RoundedRectangle(cornerRadius: 10)
-//                                .foregroundColor(.purple)
-//                                .opacity(0.8)
-//                                .frame(width: 100, height: 50)
-//
-//                            Text(Hype.ambient.rawValue)
-//                                .foregroundColor(.white)
-//                                .bold()
-//                        }
-//                    }
-//                    .padding()
-//                    Spacer()
-//                }
-//                Spacer()
-//            }
-        }
-        .task {
-            AudioManager.shared.startPlayer(track: "night_thunder")
         }
     }
 }

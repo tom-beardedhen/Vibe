@@ -13,11 +13,13 @@
 		E9787967284525B10021B5A2 /* night_thunder.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E9787966284525B10021B5A2 /* night_thunder.mp3 */; };
 		E978796A284602C00021B5A2 /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9787969284602C00021B5A2 /* PlayerView.swift */; };
 		E978796C28460F1B0021B5A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796B28460F1B0021B5A2 /* Extensions.swift */; };
+		E978796E284655620021B5A2 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796D284655620021B5A2 /* AudioEngine.swift */; };
+		E978797028465AC90021B5A2 /* EnginePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796F28465AC90021B5A2 /* EnginePlayerView.swift */; };
+		E978797228465EBF0021B5A2 /* PlayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978797128465EBF0021B5A2 /* PlayerTime.swift */; };
 		E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F3283D171E0048B3A3 /* VibeApp.swift */; };
 		E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F5283D171E0048B3A3 /* ContentView.swift */; };
 		E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290F7283D17220048B3A3 /* Assets.xcassets */; };
 		E98290FB283D17220048B3A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290FA283D17220048B3A3 /* Preview Assets.xcassets */; };
-		E9829106283D1D0F0048B3A3 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E9829105283D1D0F0048B3A3 /* AudioKit */; };
 		E9829108283D21D50048B3A3 /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */; };
 		E982910A283D25650048B3A3 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9829109283D25650048B3A3 /* BarView.swift */; };
 		E982910D283D27F10048B3A3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E982910C283D27F10048B3A3 /* Constants.swift */; };
@@ -33,6 +35,9 @@
 		E97879682845269D0021B5A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E9787969284602C00021B5A2 /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		E978796B28460F1B0021B5A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E978796D284655620021B5A2 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
+		E978796F28465AC90021B5A2 /* EnginePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnginePlayerView.swift; sourceTree = "<group>"; };
+		E978797128465EBF0021B5A2 /* PlayerTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTime.swift; sourceTree = "<group>"; };
 		E98290F0283D171E0048B3A3 /* Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vibe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98290F3283D171E0048B3A3 /* VibeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeApp.swift; sourceTree = "<group>"; };
 		E98290F5283D171E0048B3A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,7 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9829106283D1D0F0048B3A3 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +108,7 @@
 				E9829109283D25650048B3A3 /* BarView.swift */,
 				E9C41B862841174C00BB07CD /* RowView.swift */,
 				E9787969284602C00021B5A2 /* PlayerView.swift */,
+				E978796F28465AC90021B5A2 /* EnginePlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -114,6 +119,7 @@
 				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
 				E9787962284521D20021B5A2 /* AudioManager.swift */,
 				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
+				E978796D284655620021B5A2 /* AudioEngine.swift */,
 			);
 			path = AudioProcessing;
 			sourceTree = "<group>";
@@ -124,6 +130,7 @@
 				E982910C283D27F10048B3A3 /* Constants.swift */,
 				E9C41B842840E51B00BB07CD /* Scraps.swift */,
 				E978796B28460F1B0021B5A2 /* Extensions.swift */,
+				E978797128465EBF0021B5A2 /* PlayerTime.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -145,7 +152,6 @@
 			);
 			name = Vibe;
 			packageProductDependencies = (
-				E9829105283D1D0F0048B3A3 /* AudioKit */,
 			);
 			productName = Vibe;
 			productReference = E98290F0283D171E0048B3A3 /* Vibe.app */;
@@ -206,17 +212,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E978796E284655620021B5A2 /* AudioEngine.swift in Sources */,
 				E982910D283D27F10048B3A3 /* Constants.swift in Sources */,
 				E9752D64283E480A00D17570 /* SignalProcessing.swift in Sources */,
 				E982910A283D25650048B3A3 /* BarView.swift in Sources */,
 				E978796A284602C00021B5A2 /* PlayerView.swift in Sources */,
 				E9C41B872841174C00BB07CD /* RowView.swift in Sources */,
 				E9C41B852840E51B00BB07CD /* Scraps.swift in Sources */,
+				E978797228465EBF0021B5A2 /* PlayerTime.swift in Sources */,
 				E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */,
 				E9787963284521D20021B5A2 /* AudioManager.swift in Sources */,
 				E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */,
 				E978796C28460F1B0021B5A2 /* Extensions.swift in Sources */,
 				E9829108283D21D50048B3A3 /* MicrophoneMonitor.swift in Sources */,
+				E978797028465AC90021B5A2 /* EnginePlayerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,14 +441,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		E9829105283D1D0F0048B3A3 /* AudioKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */;
-			productName = AudioKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E98290E8283D171E0048B3A3 /* Project object */;
 }

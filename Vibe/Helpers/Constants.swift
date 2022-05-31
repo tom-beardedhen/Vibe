@@ -20,3 +20,8 @@ enum Hype: String {
     case stored = "Stored"
     case streamed = "Streamed"
 }
+
+enum TimeConstant {
+  static let secsPerMin = 60
+  static let secsPerHour = TimeConstant.secsPerMin * 60
+}
