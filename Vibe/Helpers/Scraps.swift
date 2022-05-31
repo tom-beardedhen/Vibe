@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MediaPlayer
 
 class Scraps {
     

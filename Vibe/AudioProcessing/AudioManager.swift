@@ -10,7 +10,7 @@ import AVKit
 
 class AudioManager: ObservableObject {
     
-    @Published var isLooping: Bool = true
+    @Published var isLooping: Bool = false
     
     static let shared = AudioManager()
     var player: AVAudioPlayer?

@@ -62,6 +62,7 @@ struct PlayerView: View {
                 } label: {
                     Image(systemName: "stop")
                         .font(.system(size: 28))
+                        .offset(x: 0, y: 1)
                 }
                 
                 Button {
