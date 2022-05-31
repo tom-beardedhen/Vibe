@@ -47,9 +47,6 @@ struct ContentView: View {
                 Spacer()
             }
         }
-        .task {
-            AudioManager.shared.startPlayer(track: "night_thunder")
-        }
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 import AVKit
 
-class AudioManager {
+class AudioManager: ObservableObject {
     
     static let shared = AudioManager()
     var player: AVAudioPlayer?
