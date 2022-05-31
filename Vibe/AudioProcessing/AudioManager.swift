@@ -10,6 +10,8 @@ import AVKit
 
 class AudioManager: ObservableObject {
     
+    @Published var isLooping: Bool = true
+    
     static let shared = AudioManager()
     var player: AVAudioPlayer?
     
@@ -28,6 +30,39 @@ class AudioManager: ObservableObject {
         catch {
             print("Failed to initialise player", error)
         }
+    }
+    
+    func playPause() {
+        
+        guard let player = player else {
+            return
+        }
+        
+        if player.isPlaying {
+            player.pause()
+        }
+        else {
+            player.play()
+        }
+    }
+    
+    func stop() {
+        guard let player = player else {
+            return
+        }
+
+        if player.isPlaying {
+            player.stop()
+        }
+    }
+    
+    func toggleLoop() {
+        guard let player = player else {
+            return
+        }
+
+        player.numberOfLoops = player.numberOfLoops == 0 ? -1 : 0
+        self.isLooping.toggle()
     }
     
 }

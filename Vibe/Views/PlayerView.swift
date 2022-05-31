@@ -40,10 +40,10 @@ struct PlayerView: View {
                 Slider(value: $value, in: 0...player.duration) {
                     
                 } minimumValueLabel: {
-                    Text("0:00")
+                    Text(DateComponentsFormatter.positional.string(from: player.currentTime) ?? "0:00")
                         .foregroundColor(.blue)
                 } maximumValueLabel: {
-                    Text("1:00")
+                    Text(DateComponentsFormatter.positional.string(from: player.duration - player.currentTime) ?? "1:00")
                         .foregroundColor(.blue)
                 } onEditingChanged: { editing in
                     
@@ -58,20 +58,21 @@ struct PlayerView: View {
             
             HStack (spacing: 20) {
                 Button {
-                    
+                    am.stop()
                 } label: {
-                    Image(systemName: "backward")
+                    Image(systemName: "stop")
                         .font(.system(size: 28))
                 }
                 
                 Button {
-                    
+                    am.player?.currentTime -= 10
                 } label: {
                     Image(systemName: "gobackward.10")
                         .font(.system(size: 28))
                 }
                 
                 Button {
+                    am.playPause()
                     playing.toggle()
                 } label: {
                     Image(systemName: playing ? "pause" : "play")
@@ -79,17 +80,18 @@ struct PlayerView: View {
                 }
                 
                 Button {
-                    
+                    am.player?.currentTime += 10
                 } label: {
                     Image(systemName: "goforward.10")
                         .font(.system(size: 28))
                 }
                 
                 Button {
-                    
+                    am.toggleLoop()
                 } label: {
-                    Image(systemName: "forward")
+                    Image(systemName: "repeat")
                         .font(.system(size: 28))
+                        .foregroundColor(am.isLooping ? .black : .blue)
                 }
             }
             .padding()
