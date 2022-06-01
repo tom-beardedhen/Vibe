@@ -73,10 +73,10 @@ class AudioEngine: ObservableObject {
     private func configureEngine(with format: AVAudioFormat) {
         
         engine.attach(player)
-        engine.attach(timeEffect)
+//        engine.attach(timeEffect)
         
-        engine.connect(player, to: timeEffect, format: format)
-        engine.connect(timeEffect, to: engine.mainMixerNode, format: format)
+        engine.connect(player, to: engine.mainMixerNode, format: format)
+//        engine.connect(timeEffect, to: engine.mainMixerNode, format: format)
         
         engine.prepare()
         
@@ -111,7 +111,6 @@ class AudioEngine: ObservableObject {
         
         if player.isPlaying {
             disconnectVolumeTap()
-            
             player.pause()
         }
         else {
@@ -123,10 +122,10 @@ class AudioEngine: ObservableObject {
             }
             
             player.play()
-            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
-                self.updateDisplay()
-//                self.connectVolumeTap()
-            })
+//            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+//                self.updateDisplay()
+////                self.connectVolumeTap()
+//            })
         }
     }
     
@@ -175,6 +174,13 @@ class AudioEngine: ObservableObject {
             
             let channelDataValue = channelData.pointee
             let frames = buffer.frameLength
+            
+            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+                self.updateDisplay()
+                
+//                let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
+                
+            })
             
             let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
             
