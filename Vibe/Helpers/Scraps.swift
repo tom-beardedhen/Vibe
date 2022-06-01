@@ -8,6 +8,7 @@
 import SwiftUI
 import MediaPlayer
 
+// Just all the unused code that ive torn out and replaced, incase i needed it again 
 class Scraps {
     
     // MARK: Audio Engine

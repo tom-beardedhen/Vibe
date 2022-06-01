@@ -23,7 +23,6 @@ class MicrophoneMonitor: ObservableObject {
     var soundRanges: [Float]
     
     @Published var soundRangesWMem: [[Float]]
-    @Published var type: Hype = .ambient
     
     init() {
         

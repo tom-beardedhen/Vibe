@@ -15,12 +15,6 @@ struct Constants {
     static let memoryNum = 12
 }
 
-enum Hype: String {
-    case ambient = "Ambient"
-    case stored = "Stored"
-    case streamed = "Streamed"
-}
-
 enum TimeConstant {
   static let secsPerMin = 60
   static let secsPerHour = TimeConstant.secsPerMin * 60

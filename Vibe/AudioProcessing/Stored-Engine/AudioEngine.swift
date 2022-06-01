@@ -12,8 +12,9 @@ class AudioEngine: ObservableObject {
     
     var isPlaying: Bool = false
     var isPlayerReady: Bool = false
-    @Published var meterLevel: Float = 10
+    @Published var meterLevel: Float = 0
     @Published var playerProgress: Double = 0
+    @Published var audioTime: Double = 0
     var playerTime: PlayerTime = .zero
     
     private let engine = AVAudioEngine()
@@ -122,10 +123,10 @@ class AudioEngine: ObservableObject {
             }
             
             player.play()
-//            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
-//                self.updateDisplay()
-////                self.connectVolumeTap()
-//            })
+            timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+                self.updateDisplay()
+//                self.connectVolumeTap()
+            })
         }
     }
     
@@ -175,33 +176,32 @@ class AudioEngine: ObservableObject {
             let channelDataValue = channelData.pointee
             let frames = buffer.frameLength
             
-            self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
-                self.updateDisplay()
-                
-//                let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
-                
-            })
+//            let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
+//            print(rmsValue)
             
-            let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
+            let channelDataValueArray = stride(
+                from: 0,
+                to: Int(buffer.frameLength),
+                by: buffer.stride)
+                .map { channelDataValue[$0] }
+
+            let rms = sqrt(channelDataValueArray.map {
+                return $0 * $0
+            }
+                .reduce(0, +) / Float(buffer.frameLength))
             
-//            let channelDataValueArray = stride(
-//                from: 0,
-//                to: Int(buffer.frameLength),
-//                by: buffer.stride)
-//                .map { channelDataValue[$0] }
-//
-//            let rms = sqrt(channelDataValueArray.map {
-//                return $0 * $0
-//            }
-//                .reduce(0, +) / Float(buffer.frameLength))
-//
-//            let avgPower = 20 * log10(rms)
-//
-//            let meterLevel = self.scaledPower(power: avgPower)
+            print(rms)
+
+            let avgPower = 20 * log10(rms)
+
+            let meterLevel = self.scaledPower(power: avgPower)
+
+//            print(meterLevel)
             
             DispatchQueue.main.async {
-//                self.meterLevel = self.isPlaying ? meterLevel : 0
-                self.meterLevel = rmsValue
+                self.meterLevel = self.isPlaying ? meterLevel : 0
+//                self.meterLevel = rmsValue
+                
             }
             
         }

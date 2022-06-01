@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Class to help with time stamps on EnginePlayerView
 struct PlayerTime {
     
     let elapsedText: String

@@ -15,6 +15,8 @@
 		E978796E284655620021B5A2 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796D284655620021B5A2 /* AudioEngine.swift */; };
 		E978797028465AC90021B5A2 /* EnginePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796F28465AC90021B5A2 /* EnginePlayerView.swift */; };
 		E978797228465EBF0021B5A2 /* PlayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978797128465EBF0021B5A2 /* PlayerTime.swift */; };
+		E978797B284773650021B5A2 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E978797A284773650021B5A2 /* AudioKit */; };
+		E978797F284773AB0021B5A2 /* AudioKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978797E284773AB0021B5A2 /* AudioKit.swift */; };
 		E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F3283D171E0048B3A3 /* VibeApp.swift */; };
 		E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F5283D171E0048B3A3 /* ContentView.swift */; };
 		E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290F7283D17220048B3A3 /* Assets.xcassets */; };
@@ -36,6 +38,7 @@
 		E978796D284655620021B5A2 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioEngine.swift; sourceTree = "<group>"; };
 		E978796F28465AC90021B5A2 /* EnginePlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnginePlayerView.swift; sourceTree = "<group>"; };
 		E978797128465EBF0021B5A2 /* PlayerTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTime.swift; sourceTree = "<group>"; };
+		E978797E284773AB0021B5A2 /* AudioKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKit.swift; sourceTree = "<group>"; };
 		E98290F0283D171E0048B3A3 /* Vibe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vibe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E98290F3283D171E0048B3A3 /* VibeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeApp.swift; sourceTree = "<group>"; };
 		E98290F5283D171E0048B3A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E978797B284773650021B5A2 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +112,21 @@
 			path = "Stored-Engine";
 			sourceTree = "<group>";
 		};
+		E978797C2847736E0021B5A2 /* AudioKit */ = {
+			isa = PBXGroup;
+			children = (
+				E978797E284773AB0021B5A2 /* AudioKit.swift */,
+			);
+			path = AudioKit;
+			sourceTree = "<group>";
+		};
+		E978797D284773820021B5A2 /* AudioKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AudioKit;
+			sourceTree = "<group>";
+		};
 		E98290E7283D171E0048B3A3 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +173,7 @@
 				E978797328475DC60021B5A2 /* Ambient */,
 				E978797428475DD90021B5A2 /* Stored-Player */,
 				E978797528475E010021B5A2 /* Stored-Engine */,
+				E978797D284773820021B5A2 /* AudioKit */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -165,6 +185,7 @@
 				E978797628475E190021B5A2 /* Ambient */,
 				E978797728475E280021B5A2 /* Stored-Player */,
 				E978797828475E420021B5A2 /* Stored-Engine */,
+				E978797C2847736E0021B5A2 /* AudioKit */,
 			);
 			path = AudioProcessing;
 			sourceTree = "<group>";
@@ -197,6 +218,7 @@
 			);
 			name = Vibe;
 			packageProductDependencies = (
+				E978797A284773650021B5A2 /* AudioKit */,
 			);
 			productName = Vibe;
 			productReference = E98290F0283D171E0048B3A3 /* Vibe.app */;
@@ -228,6 +250,7 @@
 			mainGroup = E98290E7283D171E0048B3A3;
 			packageReferences = (
 				E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				E9787979284773650021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = E98290F1283D171E0048B3A3 /* Products */;
 			projectDirPath = "";
@@ -259,6 +282,7 @@
 				E978796E284655620021B5A2 /* AudioEngine.swift in Sources */,
 				E982910D283D27F10048B3A3 /* Constants.swift in Sources */,
 				E9752D64283E480A00D17570 /* SignalProcessing.swift in Sources */,
+				E978797F284773AB0021B5A2 /* AudioKit.swift in Sources */,
 				E982910A283D25650048B3A3 /* BarView.swift in Sources */,
 				E978796A284602C00021B5A2 /* PlayerView.swift in Sources */,
 				E9C41B872841174C00BB07CD /* RowView.swift in Sources */,
@@ -476,6 +500,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E9787979284773650021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKit/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit/";
@@ -485,6 +517,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E978797A284773650021B5A2 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			productName = AudioKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E98290E8283D171E0048B3A3 /* Project object */;
 }

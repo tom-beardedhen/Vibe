@@ -10,20 +10,29 @@ import Accelerate
 
 class SignalProcessing {
     
+    // Function to find root mean square
     static func rms(data: UnsafeMutablePointer<Float>, frameLength: UInt) -> Float {
+        
+        // Variable that will be written to
         var val : Float = 0
+        
+        // Accelerate function to calculate the rms
         vDSP_measqv(data, 1, &val, frameLength)
 
+        // Converting to relative decibels
         var db = 10*log10f(val)
-        //inverse dB to +ve range where 0(silent) -> 160(loudest)
+        
+        // Inverse dB to +ve range where 0(silent) -> 160(loudest), actual decibels
         db = 160 + db;
-        //Only take into account range from 120->160, so FSR = 40
+        
+        // Only take into account range from 120->160, so FSR = 40, not sure what this does??
         db = db - 120
 
+        // Scaling basically 
         let dividor = Float(40/0.3)
         var adjustedVal = 0.3 + db/dividor
 
-        //cutoff
+        // Cutoff
         if (adjustedVal < 0.3) {
             adjustedVal = 0.3
         } else if (adjustedVal > 0.6) {

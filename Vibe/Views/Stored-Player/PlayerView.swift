@@ -11,33 +11,24 @@ struct PlayerView: View {
     
     @StateObject var am = AudioManager()
     
-    @State var value: Double = 0.0
-    @State var playing: Bool = false
-    
-    @State private var isEditing: Bool = false
-    
-    let timer = Timer
-        .publish(every: 0.5, on: .main, in: .common)
-        .autoconnect()
-    
     var body: some View {
         
         VStack {
             
             Button {
                 am.startPlayer(track: "night_thunder")
-                playing = true
+                am.playing = true
             } label: {
                 Text("night_thunder")
             }
             
             Spacer()
             
-            Text("\(value)")
+            Text("\(am.value)")
                 .foregroundColor(.blue)
             
             if let player = am.player {
-                Slider(value: $value, in: 0...player.duration) {
+                Slider(value: $am.value, in: 0...player.duration) {
                     
                 } minimumValueLabel: {
                     Text(DateComponentsFormatter.positional.string(from: player.currentTime) ?? "0:00")
@@ -47,10 +38,10 @@ struct PlayerView: View {
                         .foregroundColor(.blue)
                 } onEditingChanged: { editing in
                     
-                    isEditing = editing
+                    am.isEditing = editing
                     
                     if !editing {
-                        player.currentTime = value
+                        player.currentTime = am.value
                     }
                 }
 
@@ -74,9 +65,9 @@ struct PlayerView: View {
                 
                 Button {
                     am.playPause()
-                    playing.toggle()
+                    am.playing.toggle()
                 } label: {
-                    Image(systemName: playing ? "pause" : "play")
+                    Image(systemName: am.playing ? "pause" : "play")
                         .font(.system(size: 36))
                 }
                 
@@ -99,12 +90,6 @@ struct PlayerView: View {
 
         }
         .padding()
-        .onReceive(timer) { _ in
-            guard let player = am.player, !isEditing else {
-                return
-            }
-            value = player.currentTime
-        }
     }
 }
 
