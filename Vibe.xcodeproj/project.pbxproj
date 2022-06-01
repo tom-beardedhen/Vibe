@@ -15,8 +15,10 @@
 		E978796E284655620021B5A2 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796D284655620021B5A2 /* AudioEngine.swift */; };
 		E978797028465AC90021B5A2 /* EnginePlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978796F28465AC90021B5A2 /* EnginePlayerView.swift */; };
 		E978797228465EBF0021B5A2 /* PlayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978797128465EBF0021B5A2 /* PlayerTime.swift */; };
-		E978797B284773650021B5A2 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E978797A284773650021B5A2 /* AudioKit */; };
 		E978797F284773AB0021B5A2 /* AudioKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E978797E284773AB0021B5A2 /* AudioKit.swift */; };
+		E978798228477E700021B5A2 /* AudioKitUI in Frameworks */ = {isa = PBXBuildFile; productRef = E978798128477E700021B5A2 /* AudioKitUI */; };
+		E978798528477F190021B5A2 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = E978798428477F190021B5A2 /* AudioKitEX */; };
+		E978798B284780090021B5A2 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = E978798A284780090021B5A2 /* AudioKit */; };
 		E98290F4283D171E0048B3A3 /* VibeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F3283D171E0048B3A3 /* VibeApp.swift */; };
 		E98290F6283D171E0048B3A3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98290F5283D171E0048B3A3 /* ContentView.swift */; };
 		E98290F8283D17220048B3A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E98290F7283D17220048B3A3 /* Assets.xcassets */; };
@@ -56,7 +58,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E978797B284773650021B5A2 /* AudioKit in Frameworks */,
+				E978798528477F190021B5A2 /* AudioKitEX in Frameworks */,
+				E978798228477E700021B5A2 /* AudioKitUI in Frameworks */,
+				E978798B284780090021B5A2 /* AudioKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +222,9 @@
 			);
 			name = Vibe;
 			packageProductDependencies = (
-				E978797A284773650021B5A2 /* AudioKit */,
+				E978798128477E700021B5A2 /* AudioKitUI */,
+				E978798428477F190021B5A2 /* AudioKitEX */,
+				E978798A284780090021B5A2 /* AudioKit */,
 			);
 			productName = Vibe;
 			productReference = E98290F0283D171E0048B3A3 /* Vibe.app */;
@@ -249,8 +255,9 @@
 			);
 			mainGroup = E98290E7283D171E0048B3A3;
 			packageReferences = (
-				E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */,
-				E9787979284773650021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */,
+				E978798028477E700021B5A2 /* XCRemoteSwiftPackageReference "AudioKitUI" */,
+				E978798328477F190021B5A2 /* XCRemoteSwiftPackageReference "AudioKitEX" */,
+				E9787989284780090021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */,
 			);
 			productRefGroup = E98290F1283D171E0048B3A3 /* Products */;
 			projectDirPath = "";
@@ -500,28 +507,46 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E9787979284773650021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+		E978798028477E700021B5A2 /* XCRemoteSwiftPackageReference "AudioKitUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AudioKit/AudioKit/";
+			repositoryURL = "https://github.com/AudioKit/AudioKitUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.5;
+			};
+		};
+		E978798328477F190021B5A2 /* XCRemoteSwiftPackageReference "AudioKitEX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AudioKit/AudioKitEX";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
 			};
 		};
-		E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
+		E9787989284780090021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AudioKit/AudioKit/";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E978797A284773650021B5A2 /* AudioKit */ = {
+		E978798128477E700021B5A2 /* AudioKitUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E9829104283D1D0F0048B3A3 /* XCRemoteSwiftPackageReference "AudioKit" */;
+			package = E978798028477E700021B5A2 /* XCRemoteSwiftPackageReference "AudioKitUI" */;
+			productName = AudioKitUI;
+		};
+		E978798428477F190021B5A2 /* AudioKitEX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E978798328477F190021B5A2 /* XCRemoteSwiftPackageReference "AudioKitEX" */;
+			productName = AudioKitEX;
+		};
+		E978798A284780090021B5A2 /* AudioKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E9787989284780090021B5A2 /* XCRemoteSwiftPackageReference "AudioKit" */;
 			productName = AudioKit;
 		};
 /* End XCSwiftPackageProductDependency section */

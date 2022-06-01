@@ -5,18 +5,20 @@
 //  Created by Tom Johnson on 01/06/2022.
 //
 
-import AVFoundation
 import AudioKit
+import AudioKitUI
+import AudioKitEX
+import AudioToolbox
 
 class Conductor: ObservableObject {
     
 //    let mic = AKMicrophone()
 //    let mic = MicrophoneMonitor
     let engine = AudioEngine()
-    var mic: AudioEngine.InputNode!
+    var mic: AudioEngine.InputNode
     
 //    let mixer = AKMixer()
-    let mixer = Mixer()
+    let micMixer = Mixer()
     
     let refreshTimeInterval: Double = 0.02
     
@@ -28,7 +30,7 @@ class Conductor: ObservableObject {
     let sampleRate: double_t = 44100
     
 //    let outputLimiter = AKPeakLimiter()
-    let outputLimiter = PeakLimiter()
+    let outputLimiter: PeakLimiter?
     
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
 
@@ -37,21 +39,23 @@ class Conductor: ObservableObject {
         
         mic = engine.input
         
+        outputLimiter = PeakLimiter(engine)
+        
         // connect the fft tap to the mic mixer (this allows us to analyze the audio at the micMixer node)
-        fft = AKFFTTap.init(micMixer)
+        fft = FFTTap.init(micMixer)
         
         // route the audio from the microphone to the limiter
         setupMic()
         
         // set the limiter as the last node in our audio chain
-        AudioKit.output = outputLimiter
+        engine.output = outputLimiter
         
         // do any AudioKit setting changes before starting the AudioKit engine
         setAudioKitSettings()
 
         // start the AudioKit engine
         do{
-            try AudioKit.start()
+            try engine.start()
         }
         catch{
             assert(false, error.localizedDescription)
