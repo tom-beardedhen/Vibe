@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EnginePlayerView: View {
-    @StateObject var am = AudioEngine()
+    @StateObject var am = AudioEngineStr()
     
     @State var value: Double = 0.0
     @State var playing: Bool = false
@@ -19,7 +19,7 @@ struct EnginePlayerView: View {
         
         VStack {
             
-            BarView(value: CGFloat(am.meterLevel * 30))
+            BarView(width: 50, height: CGFloat(am.meterLevel * 30))
                 .padding(50)
             
             Spacer()

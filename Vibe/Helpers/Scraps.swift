@@ -142,6 +142,8 @@ class Scraps {
     
     // MARK: ContentView
     
+//    (UIScreen.main.bounds.width - 200) / CGFloat(10)
+    
 //    ForEach(0..<512, id:\.self) { i in
 //
 //        HStack {

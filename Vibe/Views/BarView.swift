@@ -9,13 +9,14 @@ import SwiftUI
 
 struct BarView: View {
     
-    var value: CGFloat
+    var width: CGFloat
+    var height: CGFloat
     
     var body: some View {
         
         RoundedRectangle(cornerRadius: 5)
             .fill(.purple)
-            .frame(width: (UIScreen.main.bounds.width - 200) / CGFloat(10), height: value)
+            .frame(width: width, height: height)
     }
 }
 

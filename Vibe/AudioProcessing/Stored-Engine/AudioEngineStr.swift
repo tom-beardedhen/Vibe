@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-class AudioEngine: ObservableObject {
+class AudioEngineStr: ObservableObject {
     
     var isPlaying: Bool = false
     var isPlayerReady: Bool = false

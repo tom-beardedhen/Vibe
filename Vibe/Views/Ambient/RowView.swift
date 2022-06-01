@@ -15,7 +15,7 @@ struct RowView: View {
     var body: some View {
         HStack (spacing: 2) {
             ForEach(0..<Constants.memoryNum, id: \.self) { j in
-                BarView(value: CGFloat(array[index][j]))
+                BarView(width: 20, height: CGFloat(array[index][j]))
             }
         }
     }
