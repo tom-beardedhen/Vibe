@@ -98,34 +98,6 @@
 			path = "Stored-Engine";
 			sourceTree = "<group>";
 		};
-		E978797628475E190021B5A2 /* Ambient */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Ambient;
-			sourceTree = "<group>";
-		};
-		E978797728475E280021B5A2 /* Stored-Player */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Stored-Player";
-			sourceTree = "<group>";
-		};
-		E978797828475E420021B5A2 /* Stored-Engine */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Stored-Engine";
-			sourceTree = "<group>";
-		};
-		E978797C2847736E0021B5A2 /* AudioKit */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AudioKit;
-			sourceTree = "<group>";
-		};
 		E978797D284773820021B5A2 /* AudioKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,14 +128,12 @@
 			children = (
 				E97879682845269D0021B5A2 /* Info.plist */,
 				E98290F3283D171E0048B3A3 /* VibeApp.swift */,
-				E9829109283D25650048B3A3 /* BarView.swift */,
-				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
 				E978797328475DC60021B5A2 /* Ambient */,
 				E978797428475DD90021B5A2 /* Stored-Player */,
 				E978797528475E010021B5A2 /* Stored-Engine */,
 				E978797D284773820021B5A2 /* AudioKit */,
-				E9829101283D17430048B3A3 /* Views */,
-				E9829103283D17520048B3A3 /* AudioProcessing */,
+				E9829101283D17430048B3A3 /* SharedViews */,
+				E9829103283D17520048B3A3 /* SharedAudioProcessing */,
 				E982910B283D27CA0048B3A3 /* Helpers */,
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
 				E9787966284525B10021B5A2 /* night_thunder.mp3 */,
@@ -181,22 +151,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E9829101283D17430048B3A3 /* Views */ = {
+		E9829101283D17430048B3A3 /* SharedViews */ = {
 			isa = PBXGroup;
 			children = (
+				E9829109283D25650048B3A3 /* BarView.swift */,
 			);
-			path = Views;
+			path = SharedViews;
 			sourceTree = "<group>";
 		};
-		E9829103283D17520048B3A3 /* AudioProcessing */ = {
+		E9829103283D17520048B3A3 /* SharedAudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				E978797628475E190021B5A2 /* Ambient */,
-				E978797728475E280021B5A2 /* Stored-Player */,
-				E978797828475E420021B5A2 /* Stored-Engine */,
-				E978797C2847736E0021B5A2 /* AudioKit */,
+				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
 			);
-			path = AudioProcessing;
+			path = SharedAudioProcessing;
 			sourceTree = "<group>";
 		};
 		E982910B283D27CA0048B3A3 /* Helpers */ = {
