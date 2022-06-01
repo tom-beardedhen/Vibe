@@ -5,18 +5,18 @@
 //  Created by Tom Johnson on 01/06/2022.
 //
 
-import Foundation
+import AVFoundation
 import AudioKit
 
 class Conductor: ObservableObject {
     
 //    let mic = AKMicrophone()
 //    let mic = MicrophoneMonitor
-//    let engine = AudioEngine()
-//    let mic: AudioEngine.InputNode
+    let engine = AudioEngine()
+    var mic: AudioEngine.InputNode!
     
 //    let mixer = AKMixer()
-    let mixer = Mixer
+    let mixer = Mixer()
     
     let refreshTimeInterval: Double = 0.02
     
@@ -35,7 +35,7 @@ class Conductor: ObservableObject {
     
     init(){
         
-//        mic = engine.input?.inputs
+        mic = engine.input
         
         // connect the fft tap to the mic mixer (this allows us to analyze the audio at the micMixer node)
         fft = AKFFTTap.init(micMixer)
