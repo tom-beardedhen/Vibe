@@ -126,6 +126,7 @@
 		E98290F2283D171E0048B3A3 /* Vibe */ = {
 			isa = PBXGroup;
 			children = (
+				E964545B2847AA1C00DE5DD0 /* ReadMe.md */,
 				E97879682845269D0021B5A2 /* Info.plist */,
 				E98290F3283D171E0048B3A3 /* VibeApp.swift */,
 				E978797328475DC60021B5A2 /* Ambient */,
@@ -138,7 +139,6 @@
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
 				E9787966284525B10021B5A2 /* night_thunder.mp3 */,
 				E98290F9283D17220048B3A3 /* Preview Content */,
-				E964545B2847AA1C00DE5DD0 /* ReadMe.md */,
 			);
 			path = Vibe;
 			sourceTree = "<group>";

@@ -12,6 +12,9 @@ struct VibeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+//            PlayerView()
+//            EnginePlayerView()
+//            AudioKitView()
         }
     }
 }

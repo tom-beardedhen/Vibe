@@ -99,7 +99,6 @@ class MicrophoneMonitor: ObservableObject {
                 }
             }
         })
-
     }
     
     // Set the power of each bin, keeping a backlog of 7 
