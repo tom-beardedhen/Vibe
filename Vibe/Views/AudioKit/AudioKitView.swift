@@ -15,7 +15,7 @@ struct AudioKitView: View {
         VStack {
             HStack {
                 ForEach(vm.amplitudes, id: \.self) { i in
-                    BarView(width: 10, height: CGFloat(i))
+//                    BarView(width: 10, height: CGFloat(i))
                 }
             }
         }

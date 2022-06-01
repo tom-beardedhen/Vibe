@@ -20,19 +20,19 @@ class Conductor: ObservableObject {
     
 //    let mixer = AKMixer()
     let micMixer = Mixer()
-//
+
     let refreshTimeInterval: Double = 0.02
-//
-////    let fft: AKFFTTap
+
+//    let fft: AKFFTTap
     let fft: FFTTap
-//
+
     let FFT_SIZE = 512
-//
+
     let sampleRate: double_t = 44100
-//
-////    let outputLimiter = AKPeakLimiter()
+
+//    let outputLimiter = AKPeakLimiter()
     let outputLimiter: PeakLimiter?
-//
+
     @Published var amplitudes: [Double] = Array(repeating: 0.5, count: 50)
 
     
@@ -45,30 +45,31 @@ class Conductor: ObservableObject {
         mic = input
 //
         outputLimiter = PeakLimiter(input)
-//
-//        // connect the fft tap to the mic mixer (this allows us to analyze the audio at the micMixer node)
+
+//      connect the fft tap to the mic mixer (this allows us to analyze the audio at the micMixer node)
         fft = FFTTap(input, bufferSize: UInt32(FFT_SIZE), handler: { _ in })
-//
-//        // route the audio from the microphone to the limiter
+
+//      route the audio from the microphone to the limiter
         setupMic()
-//
-//        // set the limiter as the last node in our audio chain
+
+//      set the limiter as the last node in our audio chain
         engine.output = outputLimiter
-//
-//        // do any AudioKit setting changes before starting the AudioKit engine
+
+//      do any AudioKit setting changes before starting the AudioKit engine
         setAudioKitSettings()
-//
-//        // start the AudioKit engine
+
+//      start the AudioKit engine
         do{
             try engine.start()
         }
         catch{
             assert(false, error.localizedDescription)
         }
-//
-//        // create a repeating timer at the rate of our chosen time interval - this updates the amplitudes each timer callback
+
+        // create a repeating timer at the rate of our chosen time interval - this updates the amplitudes each timer callback
         Timer.scheduledTimer(withTimeInterval: refreshTimeInterval, repeats: true) { timer in
             self.updateAmplitudes()
+            print(self.amplitudes)
         }
 
     }
@@ -93,8 +94,8 @@ class Conductor: ObservableObject {
         mic.addInput(micMixer)
 
         // route mixMixer to a mixer with no volume so that we don't output audio
-        let silentMixer = Mixer(micMixer)
-        silentMixer.volume = 0.0
+//        let silentMixer = Mixer(micMixer)
+//        silentMixer.volume = 0.0
 
         // route the silent Mixer to the limiter (you must always route the audio chain to AudioKit.output)
 //        silentMixer.setOutput(to: outputLimiter)
@@ -103,7 +104,7 @@ class Conductor: ObservableObject {
     }
     
     /// Analyze fft data and write to our amplitudes array
-    @objc func updateAmplitudes(){
+    func updateAmplitudes(){
         //If you are interested in knowing more about this calculation, I have provided a couple recommended links at the bottom of this file.
 
         // loop by two through all the fft data

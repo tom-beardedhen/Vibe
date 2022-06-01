@@ -19,7 +19,7 @@ struct EnginePlayerView: View {
         
         VStack {
             
-            BarView(width: 50, height: CGFloat(am.meterLevel * 30))
+            BarView(width: 50, height: CGFloat(am.meterLevel * 3))
                 .padding(50)
             
             Spacer()

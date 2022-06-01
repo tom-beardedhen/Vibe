@@ -7,11 +7,13 @@
 
 import Foundation
 import AVFoundation
+import Accelerate
 
 class AudioEngineStr: ObservableObject {
     
     var isPlaying: Bool = false
     var isPlayerReady: Bool = false
+    @Published var frequencyVertices = [Float](repeating: .zero, count: 128)
     @Published var meterLevel: Float = 0
     @Published var playerProgress: Double = 0
     @Published var audioTime: Double = 0
@@ -74,10 +76,8 @@ class AudioEngineStr: ObservableObject {
     private func configureEngine(with format: AVAudioFormat) {
         
         engine.attach(player)
-//        engine.attach(timeEffect)
         
         engine.connect(player, to: engine.mainMixerNode, format: format)
-//        engine.connect(timeEffect, to: engine.mainMixerNode, format: format)
         
         engine.prepare()
         
@@ -125,7 +125,6 @@ class AudioEngineStr: ObservableObject {
             player.play()
             timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
                 self.updateDisplay()
-//                self.connectVolumeTap()
             })
         }
     }
@@ -165,48 +164,63 @@ class AudioEngineStr: ObservableObject {
         
         let format = engine.mainMixerNode.outputFormat(forBus: 0)
         
-        engine.mainMixerNode.installTap(onBus: 0,
-                                        bufferSize: 1024,
-                                        format: format) { buffer, _ in
+        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: format) { buffer, time in
             
-            guard let channelData = buffer.floatChannelData else {
-                return
-            }
+            self.getAmplitude(buffer: buffer)
             
-            let channelDataValue = channelData.pointee
-            let frames = buffer.frameLength
-            
-//            let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
-//            print(rmsValue)
-            
-            let channelDataValueArray = stride(
-                from: 0,
-                to: Int(buffer.frameLength),
-                by: buffer.stride)
-                .map { channelDataValue[$0] }
-
-            let rms = sqrt(channelDataValueArray.map {
-                return $0 * $0
-            }
-                .reduce(0, +) / Float(buffer.frameLength))
-            
-            print(rms)
-
-            let avgPower = 20 * log10(rms)
-
-            let meterLevel = self.scaledPower(power: avgPower)
-
-//            print(meterLevel)
-            
-            DispatchQueue.main.async {
-                self.meterLevel = self.isPlaying ? meterLevel : 0
-//                self.meterLevel = rmsValue
-                
-            }
+//            guard let channelData = buffer.floatChannelData else {
+//                return
+//            }
+//
+//            let channelDataValue = channelData.pointee
+//            let frames = buffer.frameLength
+//
+//            let channelDataValueArray = stride(
+//                from: 0,
+//                to: Int(frames),
+//                by: buffer.stride)
+//                .map { channelDataValue[$0] }
+//
+//            let rms = sqrt(channelDataValueArray.map {
+//                return $0 * $0
+//            }
+//                .reduce(0, +) / Float(buffer.frameLength))
+//
+//            print(rms)
+//
+//            let avgPower = 20 * log10(rms)
+//
+//            let meterLevel = self.scaledPower(power: avgPower)
+//
+//            DispatchQueue.main.async {
+//                self.meterLevel = self.isPlaying ? meterLevel : 0
+//
+//            }
             
         }
     }
     
+    private func getAmplitude(buffer: AVAudioPCMBuffer) {
+        
+        guard let channelData = buffer.floatChannelData else {
+            return
+        }
+        
+        let channelDataValue = channelData.pointee
+        let frames = buffer.frameLength
+        
+        let rmsValue = SignalProcessing.rms(data: channelDataValue, frameLength: UInt(frames))
+//        print(rmsValue)
+        
+        let fftSetup = vDSP_DFT_zop_CreateSetup(nil, vDSP_Length(Constants.samplesInUse), vDSP_DFT_Direction.FORWARD)
+        let frqValue = SignalProcessing.fft(data: channelDataValue, setup: fftSetup!)
+//        print(frqValue)
+        
+        DispatchQueue.main.async {
+            self.meterLevel = rmsValue
+            self.frequencyVertices = frqValue
+        }
+    }
         
     private func scaledPower(power: Float) -> Float {
         

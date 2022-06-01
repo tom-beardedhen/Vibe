@@ -28,18 +28,19 @@ class SignalProcessing {
         // Only take into account range from 120->160, so FSR = 40, not sure what this does??
         db = db - 120
 
-        // Scaling basically 
-        let dividor = Float(40/0.3)
-        var adjustedVal = 0.3 + db/dividor
-
-        // Cutoff
-        if (adjustedVal < 0.3) {
-            adjustedVal = 0.3
-        } else if (adjustedVal > 0.6) {
-            adjustedVal = 0.6
-        }
-        
-        return adjustedVal
+//        // Scaling basically 
+//        let dividor = Float(40/0.3)
+//        var adjustedVal = 0.3 + db/dividor
+//
+//        // Cutoff
+//        if (adjustedVal < 0.3) {
+//            adjustedVal = 0.3
+//        } else if (adjustedVal > 0.6) {
+//            adjustedVal = 0.6
+//        }
+//        
+//        return adjustedVal
+        return db
     }
     
     // Fourier transform to get frequency bins

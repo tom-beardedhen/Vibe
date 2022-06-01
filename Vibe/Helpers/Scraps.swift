@@ -8,7 +8,8 @@
 import SwiftUI
 import MediaPlayer
 
-// Just all the unused code that ive torn out and replaced, incase i needed it again 
+/// Just all the unused code that I've torn out and replaced, in case I needed it again
+/// You can ignore
 class Scraps {
     
     // MARK: Audio Engine

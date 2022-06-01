@@ -8,7 +8,7 @@
 import Foundation
 import AVKit
 
-// Good for playing and user experience, can use with microphone monitor, but won't be able to get info from it unlike engine
+/// Good for playing and user experience, can use with microphone monitor, but won't be able to get info from it unlike engine
 class AudioManager: ObservableObject {
     
     @Published var value: Double = 0.0

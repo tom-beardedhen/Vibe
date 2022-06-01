@@ -33,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		E964545928478CA500DE5DD0 /* AudioKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioKitView.swift; sourceTree = "<group>"; };
+		E964545B2847AA1C00DE5DD0 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		E9752D63283E480A00D17570 /* SignalProcessing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalProcessing.swift; sourceTree = "<group>"; };
 		E9787962284521D20021B5A2 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E9787966284525B10021B5A2 /* night_thunder.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = night_thunder.mp3; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				E98290F7283D17220048B3A3 /* Assets.xcassets */,
 				E9787966284525B10021B5A2 /* night_thunder.mp3 */,
 				E98290F9283D17220048B3A3 /* Preview Content */,
+				E964545B2847AA1C00DE5DD0 /* ReadMe.md */,
 			);
 			path = Vibe;
 			sourceTree = "<group>";
