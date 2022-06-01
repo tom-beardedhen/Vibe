@@ -73,6 +73,7 @@
 		E978797328475DC60021B5A2 /* Ambient */ = {
 			isa = PBXGroup;
 			children = (
+				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
 				E98290F5283D171E0048B3A3 /* ContentView.swift */,
 				E9C41B862841174C00BB07CD /* RowView.swift */,
 			);
@@ -82,6 +83,7 @@
 		E978797428475DD90021B5A2 /* Stored-Player */ = {
 			isa = PBXGroup;
 			children = (
+				E9787962284521D20021B5A2 /* AudioManager.swift */,
 				E9787969284602C00021B5A2 /* PlayerView.swift */,
 			);
 			path = "Stored-Player";
@@ -90,6 +92,7 @@
 		E978797528475E010021B5A2 /* Stored-Engine */ = {
 			isa = PBXGroup;
 			children = (
+				E978796D284655620021B5A2 /* AudioEngineStr.swift */,
 				E978796F28465AC90021B5A2 /* EnginePlayerView.swift */,
 			);
 			path = "Stored-Engine";
@@ -98,7 +101,6 @@
 		E978797628475E190021B5A2 /* Ambient */ = {
 			isa = PBXGroup;
 			children = (
-				E9829107283D21D50048B3A3 /* MicrophoneMonitor.swift */,
 			);
 			path = Ambient;
 			sourceTree = "<group>";
@@ -106,7 +108,6 @@
 		E978797728475E280021B5A2 /* Stored-Player */ = {
 			isa = PBXGroup;
 			children = (
-				E9787962284521D20021B5A2 /* AudioManager.swift */,
 			);
 			path = "Stored-Player";
 			sourceTree = "<group>";
@@ -114,7 +115,6 @@
 		E978797828475E420021B5A2 /* Stored-Engine */ = {
 			isa = PBXGroup;
 			children = (
-				E978796D284655620021B5A2 /* AudioEngineStr.swift */,
 			);
 			path = "Stored-Engine";
 			sourceTree = "<group>";
@@ -122,7 +122,6 @@
 		E978797C2847736E0021B5A2 /* AudioKit */ = {
 			isa = PBXGroup;
 			children = (
-				E978797E284773AB0021B5A2 /* AudioKit.swift */,
 			);
 			path = AudioKit;
 			sourceTree = "<group>";
@@ -130,6 +129,7 @@
 		E978797D284773820021B5A2 /* AudioKit */ = {
 			isa = PBXGroup;
 			children = (
+				E978797E284773AB0021B5A2 /* AudioKit.swift */,
 				E964545928478CA500DE5DD0 /* AudioKitView.swift */,
 			);
 			path = AudioKit;
@@ -156,6 +156,12 @@
 			children = (
 				E97879682845269D0021B5A2 /* Info.plist */,
 				E98290F3283D171E0048B3A3 /* VibeApp.swift */,
+				E9829109283D25650048B3A3 /* BarView.swift */,
+				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
+				E978797328475DC60021B5A2 /* Ambient */,
+				E978797428475DD90021B5A2 /* Stored-Player */,
+				E978797528475E010021B5A2 /* Stored-Engine */,
+				E978797D284773820021B5A2 /* AudioKit */,
 				E9829101283D17430048B3A3 /* Views */,
 				E9829103283D17520048B3A3 /* AudioProcessing */,
 				E982910B283D27CA0048B3A3 /* Helpers */,
@@ -178,11 +184,6 @@
 		E9829101283D17430048B3A3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E9829109283D25650048B3A3 /* BarView.swift */,
-				E978797328475DC60021B5A2 /* Ambient */,
-				E978797428475DD90021B5A2 /* Stored-Player */,
-				E978797528475E010021B5A2 /* Stored-Engine */,
-				E978797D284773820021B5A2 /* AudioKit */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -190,7 +191,6 @@
 		E9829103283D17520048B3A3 /* AudioProcessing */ = {
 			isa = PBXGroup;
 			children = (
-				E9752D63283E480A00D17570 /* SignalProcessing.swift */,
 				E978797628475E190021B5A2 /* Ambient */,
 				E978797728475E280021B5A2 /* Stored-Player */,
 				E978797828475E420021B5A2 /* Stored-Engine */,
